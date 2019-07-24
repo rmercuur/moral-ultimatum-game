@@ -49,11 +49,13 @@ public class NormativeAgent5 extends Agent {
 	@Override
 	public int myPropose(Agent responder) {
 		int demand =0;
-		if(!seenRespondsAccepted.isEmpty() &&!seenRespondsRejected.isEmpty()){
+		//TODO: add the first-round case where you have seen just one of the two
+		if(!seenRespondsAccepted.isEmpty() &&!seenRespondsRejected.isEmpty()){ //Dus als je nog rejection hebt gehad dan doe je ook niet de norm
 			demand = (int) //do the norm
 					(seenRespondsRejected.stream().mapToDouble(a -> a).min().getAsDouble() +
 					seenRespondsAccepted.stream().mapToDouble(a -> a).max().getAsDouble()) /
 					2;}
+		
 		else{//if no norm available
 			if(initialAction ==0){ //do the action first-round agents do
 				demand = -10; 
@@ -115,13 +117,20 @@ public class NormativeAgent5 extends Agent {
 			accept= RandomHelper.createUniform(0,1).nextDouble() <acceptRate;
 		}
 		else{
-			accept = demand <= myThreshold();
+			accept = demand <= getMyThreshold();
 		}
 		return accept;
 	}
 
-	public int myThreshold(){
+	public int getMyThreshold(){
+		int threshold =0;
+		if(seenDemands.isEmpty()){
+			threshold = (int) 0.5 * Helper.getParams().getInteger("pieSize");
+		}
+		else{	
 		OptionalDouble averageSeenDemand = (OptionalDouble) seenDemands.stream().mapToDouble(a -> a).average();
-		return (int) averageSeenDemand.getAsDouble();
+		threshold= (int) averageSeenDemand.getAsDouble();
+		} 
+		return threshold;
 	}
 }

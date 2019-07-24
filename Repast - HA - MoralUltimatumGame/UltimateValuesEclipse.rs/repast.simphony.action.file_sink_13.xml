@@ -1,6 +1,6 @@
 <repast.simphony.data2.engine.FileSinkDescriptor>
-  <name>IndividualResponseAndValueDifference</name>
-  <dataSet>IndividualResponseAndValueDifference</dataSet>
+  <name>IndividualDemandsOrResponds</name>
+  <dataSet>IndividualDemandsFromAgentObject</dataSet>
   <delimiter>,</delimiter>
   <format>TABULAR</format>
   <sourceIds class="linked-hash-set">
@@ -9,8 +9,7 @@
     <string>tick</string>
     <string>ID</string>
     <string>LastAction</string>
-    <string>ValueDifference</string>
   </sourceIds>
-  <fileName>IndividualResponseAndValueDifference.txt</fileName>
+  <fileName>IndividualDemandOrReponse.txt</fileName>
   <addTimeStamp>true</addTimeStamp>
 </repast.simphony.data2.engine.FileSinkDescriptor>

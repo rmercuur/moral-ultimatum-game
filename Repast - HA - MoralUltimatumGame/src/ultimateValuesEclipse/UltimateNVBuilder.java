@@ -61,19 +61,19 @@ public class UltimateNVBuilder extends AbstractBuilder {
 				agents.add(newAgent);
 			}
 		
-			int valueNormAgentCount = params.getInteger("valueNormAgentCount");
-			int halfValueNormAgentCount = valueNormAgentCount/2;
-				for (int i=0; i < halfValueNormAgentCount; i++){
-					TestValueNormAgentCompisition newAgent=new TestValueNormAgentCompisition(i,true);
-					context.add(newAgent);
-					agents.add(newAgent);
-				}
-				for (int i=halfValueAgentCount; i < halfValueNormAgentCount; i++){
-					TestValueNormAgentCompisition newAgent=new TestValueNormAgentCompisition(i,false);
-					context.add(newAgent);
-					agents.add(newAgent);
-				}
+		int valueNormAgentCount = params.getInteger("valueNormAgentCount");
+		int halfValueNormAgentCount = valueNormAgentCount/2;
+			for (int i=0; i < halfValueNormAgentCount; i++){
+				TestValueNormAgentCompisition newAgent=new TestValueNormAgentCompisition(i,true);
+				context.add(newAgent);
+				agents.add(newAgent);
 			}
+			for (int i=halfValueNormAgentCount; i < valueNormAgentCount; i++){
+				TestValueNormAgentCompisition newAgent=new TestValueNormAgentCompisition(i,false);
+				context.add(newAgent);
+				agents.add(newAgent);
+			}
+	}
 	
 	@Override
 	public void createGames() {

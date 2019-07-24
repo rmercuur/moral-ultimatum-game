@@ -34,17 +34,19 @@ public class TestValueNormAgentCompisition extends Agent {
 		int valueDemand= myValueBasedAgent.myPropose(responder);
 		int normDemand =myNormativeAgent.myPropose(responder);
 		
-		double valueWeight= 1 - 0.5/Helper.getParams().getInteger("EndTime");
-		double normWeight = 0 + 0.5/Helper.getParams().getInteger("EndTime");
+		double valueWeight= 0.5; //1 - 0.5/Helper.getParams().getInteger("EndTime");
+		double normWeight = 0.5; //0 + 0.5/Helper.getParams().getInteger("EndTime");
 		
-		double demand = valueWeight * valueDemand + normWeight + normDemand;
+
+		
+		double demand = valueWeight * valueDemand + normWeight * normDemand;
 		return (int) demand;
 	}
 	
 	@Override
 	public boolean myRespond(int demand, Agent proposer) {
-		int valueThreshold =myValueBasedAgent.myThreshold();
-		int normThreshold =myNormativeAgent.myThreshold();
+		int valueThreshold =myValueBasedAgent.getMyThreshold();
+		int normThreshold =myNormativeAgent.getMyThreshold();
 		
 		double valueWeight= 1 - 0.5/Helper.getParams().getInteger("EndTime");
 		double normWeight = 0 + 0.5/Helper.getParams().getInteger("EndTime");
@@ -56,13 +58,32 @@ public class TestValueNormAgentCompisition extends Agent {
 	@Override
 	public void update() {
 		myNormativeAgent.seenDemands.add(myGame.getDemand());
-		
+		//zou kunnen dat beiden runnen toch
+		//alleen de myNormDemand lijkt twee keer te runnen
 		if(myGame.isAccepted()){
 			myNormativeAgent.seenRespondsAccepted.add(myGame.getDemand());
 		}
 		else{
 			myNormativeAgent.seenRespondsRejected.add(myGame.getDemand());
 		}
+	}
+	
+	public int getMyValueDemand(){
+		Agent responder= null; //hack
+		return myValueBasedAgent.myPropose(responder);
+	}
+	
+	public int getMyNormDemand(){
+		Agent responder= null; //hack
+		return myNormativeAgent.myPropose(responder);
+	}
+	
+	public int getMyValueThreshold(){
+		return myValueBasedAgent.getMyThreshold();
+	}
+	
+	public int getMyNormThreshold(){
+		return myNormativeAgent.getMyThreshold();
 	}
 
 }
