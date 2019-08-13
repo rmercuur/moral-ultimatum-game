@@ -82,4 +82,8 @@ public abstract class Agent {
 	public double getValueDifference() {
 		return valueDifference;
 	}
+	
+	public int getGameID(){
+		return myGame.getID();
+	}
 }

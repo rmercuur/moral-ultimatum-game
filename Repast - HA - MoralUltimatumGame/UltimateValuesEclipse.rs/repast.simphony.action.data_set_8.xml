@@ -1,5 +1,5 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
-  <name>ÌndividualAll</name>
+  <name>IndividualAll</name>
   <type>NON_AGGREGATE</type>
   <sourceType>agents.TestValueNormAgentCompisition</sourceType>
   <inclTick>true</inclTick>
@@ -12,7 +12,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>42884885</hashCode>
+    <hashCode>332382920</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
   <methodDataSources class="linked-hash-map">
@@ -33,19 +33,19 @@
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
-      <string>LastResponse</string>
-      <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>LastResponse</id>
-        <className>agents.TestValueNormAgentCompisition</className>
-        <methodName>getLastResponse</methodName>
-      </repast.simphony.data2.engine.MethodDataSourceDefinition>
-    </entry>
-    <entry>
       <string>LastProfit</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>LastProfit</id>
         <className>agents.TestValueNormAgentCompisition</className>
         <methodName>getLastProfit</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>LastResponse</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>LastResponse</id>
+        <className>agents.TestValueNormAgentCompisition</className>
+        <methodName>getLastResponse</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
     <entry>
@@ -94,6 +94,14 @@
         <id>Proposer</id>
         <className>agents.TestValueNormAgentCompisition</className>
         <methodName>isProposer</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>GameID</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>GameID</id>
+        <className>agents.TestValueNormAgentCompisition</className>
+        <methodName>getGameID</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

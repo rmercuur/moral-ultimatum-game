@@ -85,5 +85,9 @@ public class TestValueNormAgentCompisition extends Agent {
 	public int getMyNormThreshold(){
 		return myNormativeAgent.getMyThreshold();
 	}
-
+	
+	@Override
+	public double getValueDifference() {
+		return myValueBasedAgent.getValueDifference();
+	}
 }

@@ -1,6 +1,6 @@
 <repast.simphony.data2.engine.FileSinkDescriptor>
   <name>IndividualAll</name>
-  <dataSet>ÌndividualAll</dataSet>
+  <dataSet>IndividualAll</dataSet>
   <delimiter>,</delimiter>
   <format>TABULAR</format>
   <sourceIds class="linked-hash-set">
@@ -8,14 +8,15 @@
     <string>tick</string>
     <string>ID</string>
     <string>LastAction</string>
-    <string>LastResponse</string>
     <string>LastProfit</string>
+    <string>LastResponse</string>
     <string>MyNormDemand</string>
     <string>MyNormThreshold</string>
     <string>MyValueDemand</string>
     <string>MyValueThreshold</string>
     <string>ValueDifference</string>
     <string>Proposer</string>
+    <string>GameID</string>
   </sourceIds>
   <fileName>IndividualAll.txt</fileName>
   <addTimeStamp>true</addTimeStamp>
