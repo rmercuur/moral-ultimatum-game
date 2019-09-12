@@ -49,37 +49,46 @@ public class NormativeAgent5 extends Agent {
 	@Override
 	public int myPropose(Agent responder) {
 		int demand =0;
-		//TODO: add the first-round case where you have seen just one of the two
-		if(!seenRespondsAccepted.isEmpty() &&!seenRespondsRejected.isEmpty()){ //Dus als je nog rejection hebt gehad dan doe je ook niet de norm
-			demand = (int) //do the norm
+		String state = null;
+		if(seenRespondsAccepted.isEmpty() &&seenRespondsRejected.isEmpty()) state = "firstTick";
+		if(seenRespondsAccepted.isEmpty() &&!seenRespondsRejected.isEmpty()) state = "onlyRejects";
+		if(!seenRespondsAccepted.isEmpty()&& seenRespondsRejected.isEmpty()) state = "onlyAccepts";
+		if(!seenRespondsAccepted.isEmpty()&& !seenRespondsRejected.isEmpty()) state = "bothAcceptsAndRejects";
+		
+		switch(state) {
+			case "firstTick":
+				switch (initialAction) {
+					case 0:
+						demand = -10; 
+						double mean = 0.5618 * Helper.getParams().getInteger("pieSize");
+						double sd = 0.1289 * Helper.getParams().getInteger("pieSize");
+						while(demand < 0 || demand > Helper.getParams().getInteger("pieSize")){
+							demand= RandomHelper.createNormal(mean, sd).nextInt();
+						break;
+						}
+					case 1: demand =0; break;
+					case 2: demand= RandomHelper.createUniform(0,0.5*Helper.getParams().getInteger("pieSize")).nextInt();break;
+					case 3: demand= RandomHelper.createUniform(0,Helper.getParams().getInteger("pieSize")).nextInt();break;
+					case 4: demand= RandomHelper.createUniform(0.5*Helper.getParams().getInteger("pieSize"),Helper.getParams().getInteger("pieSize")).nextInt();	break;			
+					case 5: demand= 1000;break;
+				}
+				break;
+			case "onlyRejects":
+				demand = (int) (seenRespondsRejected.stream().mapToDouble(a -> a).min().getAsDouble() + 
+						0.5*Helper.getParams().getInteger("pieSize"))/
+						2; 
+				break;
+			case "onlyAccepts":
+				demand = (int) (seenRespondsAccepted.stream().mapToDouble(a -> a).max().getAsDouble() + 
+						Helper.getParams().getInteger("pieSize"))/
+						2; 
+				break;
+			case "bothAcceptsAndRejects":
+				demand = (int) //do the norm
 					(seenRespondsRejected.stream().mapToDouble(a -> a).min().getAsDouble() +
 					seenRespondsAccepted.stream().mapToDouble(a -> a).max().getAsDouble()) /
-					2;}
-		
-		else{//if no norm available
-			if(initialAction ==0){ //do the action first-round agents do
-				demand = -10; 
-				double mean = 0.5618 * Helper.getParams().getInteger("pieSize");
-				double sd = 0.1289 * Helper.getParams().getInteger("pieSize");
-				while(demand < 0 || demand > Helper.getParams().getInteger("pieSize")){
-					demand= RandomHelper.createNormal(mean, sd).nextInt();
-				}
-			}
-			if(initialAction ==1){
-				demand= 0;				
-			}
-			if(initialAction ==2){ //0 half-pie
-				demand= RandomHelper.createUniform(0,0.5*Helper.getParams().getInteger("pieSize")).nextInt();
-			}
-			if(initialAction ==3){ //0 - pie
-				demand= RandomHelper.createUniform(0,Helper.getParams().getInteger("pieSize")).nextInt();
-			}	
-			if(initialAction ==4){ //0.5- pie
-				demand= RandomHelper.createUniform(0.5*Helper.getParams().getInteger("pieSize"),Helper.getParams().getInteger("pieSize")).nextInt();				
-			}
-			if(initialAction ==5){
-				demand= 1000;
-			}
+					2; 
+				break;
 		}
 		return demand;
 	}
@@ -91,17 +100,13 @@ public class NormativeAgent5 extends Agent {
 		if(seenDemands.isEmpty()){
 			double acceptRate =0.0;
 			if(initialAcceptRate ==0){ //do the action first-round agents do
-
 				double mean = 0.806;
 				double sd = 0.395;
 				acceptRate= RandomHelper.createNormal(mean, sd).nextDouble(); //NB: are extreme values a problem? don't thinks o
 			}
-
-			
 			if(initialAcceptRate ==1){ //do the action first-round agents do
 				acceptRate= RandomHelper.createUniform(0,0.0).nextDouble();
 			}
-			
 			if(initialAcceptRate ==2){ //do the action first-round agents do
 				acceptRate= RandomHelper.createUniform(0,0.5).nextDouble();
 			}
@@ -124,12 +129,12 @@ public class NormativeAgent5 extends Agent {
 
 	public int getMyThreshold(){
 		int threshold =0;
-		if(seenDemands.isEmpty()){
+		if(seenDemands.isEmpty()){ //This is not used, just for completeness in data
 			threshold = (int) 0.5 * Helper.getParams().getInteger("pieSize");
 		}
 		else{	
-		OptionalDouble averageSeenDemand = (OptionalDouble) seenDemands.stream().mapToDouble(a -> a).average();
-		threshold= (int) averageSeenDemand.getAsDouble();
+			OptionalDouble averageSeenDemand = (OptionalDouble) seenDemands.stream().mapToDouble(a -> a).average();
+			threshold= (int) averageSeenDemand.getAsDouble();
 		} 
 		return threshold;
 	}

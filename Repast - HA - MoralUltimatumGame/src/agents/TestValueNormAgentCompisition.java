@@ -21,21 +21,21 @@ public class TestValueNormAgentCompisition extends Agent {
 	ValueBasedAgentDivide myValueBasedAgent;
 	NormativeAgent5 myNormativeAgent;
 	boolean valueOrNorms;
+	double valueWeight;
+	double normWeight;
 	
 	public TestValueNormAgentCompisition(int ID, boolean isProposer) {
 		super(ID,isProposer);
 		myValueBasedAgent=new ValueBasedAgentDivide(1000,isProposer);
 		myNormativeAgent=new NormativeAgent5(1000,isProposer);
-	
-		 valueOrNorms = false; //true = Value, norm = False;
+		valueWeight= Helper.getParams().getDouble("valueNormWeight"); //1 - 0.5/Helper.getParams().getInteger("EndTime");
+		normWeight = 1-Helper.getParams().getDouble("valueNormWeight"); //0 + 0.5/Helper.getParams().getInteger("EndTime");
+		//valueOrNorms = false; //true = Value, norm = False;
 	}
 	@Override
 	public int myPropose(Agent responder) {
 		int valueDemand= myValueBasedAgent.myPropose(responder);
 		int normDemand =myNormativeAgent.myPropose(responder);
-		
-		double valueWeight= 0.5; //1 - 0.5/Helper.getParams().getInteger("EndTime");
-		double normWeight = 0.5; //0 + 0.5/Helper.getParams().getInteger("EndTime");
 		
 
 		
@@ -48,8 +48,6 @@ public class TestValueNormAgentCompisition extends Agent {
 		int valueThreshold =myValueBasedAgent.getMyThreshold();
 		int normThreshold =myNormativeAgent.getMyThreshold();
 		
-		double valueWeight= 1 - 0.5/Helper.getParams().getInteger("EndTime");
-		double normWeight = 0 + 0.5/Helper.getParams().getInteger("EndTime");
 		
 		double threshold= valueWeight * valueThreshold + normWeight +normThreshold ;
 		return demand <= threshold;

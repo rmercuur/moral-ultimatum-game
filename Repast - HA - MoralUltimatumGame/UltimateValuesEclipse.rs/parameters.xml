@@ -48,6 +48,12 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
+				<parameter name="ValueNormWeight" displayName="Weight Attributed to Values" type="double" 
+						defaultValue="0.5" 
+						isReadOnly="true" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+		/>
 				<parameter name="initialActionNorm" displayName="Type of Initial Demand (Normative Agent)" type="int" 
 						defaultValue="0" 
 						isReadOnly="false" 
