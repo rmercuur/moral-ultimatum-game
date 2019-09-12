@@ -36,9 +36,6 @@ public class TestValueNormAgentCompisition extends Agent {
 	public int myPropose(Agent responder) {
 		int valueDemand= myValueBasedAgent.myPropose(responder);
 		int normDemand =myNormativeAgent.myPropose(responder);
-		
-
-		
 		double demand = valueWeight * valueDemand + normWeight * normDemand;
 		return (int) demand;
 	}

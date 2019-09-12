@@ -48,9 +48,9 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
-				<parameter name="ValueNormWeight" displayName="Weight Attributed to Values" type="double" 
+				<parameter name="valueNormWeight" displayName="Weight Attributed to Values" type="double" 
 						defaultValue="0.5" 
-						isReadOnly="true" 
+						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
 									
 		/>
@@ -73,7 +73,7 @@
 									
 		/>
 				<parameter name="valueDifferenceMean" displayName="Difference in Value Strength (mu)" type="double" 
-						defaultValue="0.025" 
+						defaultValue="-0.55" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
 									
@@ -97,7 +97,7 @@
 									
 		/>
 				<parameter name="valueDifferenceSD" displayName="Difference in Value Strength (SD)" type="double" 
-						defaultValue="1.0" 
+						defaultValue="1.14" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
 									
