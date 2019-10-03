@@ -98,30 +98,22 @@ public class NormativeAgent5 extends Agent {
 		boolean accept;
 		
 		if(seenDemands.isEmpty()){
-			double acceptRate =0.0;
-			if(initialAcceptRate ==0){ //do the action first-round agents do
-				double mean = 0.806;
-				double sd = 0.395;
-				acceptRate= RandomHelper.createNormal(mean, sd).nextDouble(); //NB: are extreme values a problem? don't thinks o
-			}
-			if(initialAcceptRate ==1){ //do the action first-round agents do
-				acceptRate= RandomHelper.createUniform(0,0.0).nextDouble();
-			}
-			if(initialAcceptRate ==2){ //do the action first-round agents do
-				acceptRate= RandomHelper.createUniform(0,0.5).nextDouble();
-			}
-			if(initialAcceptRate ==3){ //do the action first-round agents do
-				acceptRate= RandomHelper.createUniform(0,1.0).nextDouble();
-			}
-			if(initialAcceptRate ==4){
-				acceptRate= RandomHelper.createUniform(0.75,1.0).nextDouble();
-			}
-			if(initialAcceptRate ==5){
-				acceptRate= RandomHelper.createUniform(1.0,1.0).nextDouble();
+			double acceptRate = 0.0;
+			switch (initialAction) {
+				case 0: //first-round human action
+					double mean = 0.806;
+					double sd = 0.395;
+					acceptRate= RandomHelper.createNormal(mean, sd).nextDouble(); //NB: are extreme values a problem? don't thinks o
+					break;
+				case 1: acceptRate= RandomHelper.createUniform(0,0.0).nextDouble(); break;
+				case 2: acceptRate= RandomHelper.createUniform(0,0.5).nextDouble();break;
+				case 3: acceptRate= RandomHelper.createUniform(0,1.0).nextDouble();break;
+				case 4: acceptRate= RandomHelper.createUniform(0.75,1.0).nextDouble();	break;			
+				case 5: acceptRate=  RandomHelper.createUniform(1.0,1.0).nextDouble(); break;					
 			}
 			accept= RandomHelper.createUniform(0,1).nextDouble() <acceptRate;
 		}
-		else{
+		else{ //If there is one seen demand that becomes your threshold. If more, the average.
 			accept = demand <= getMyThreshold();
 		}
 		return accept;

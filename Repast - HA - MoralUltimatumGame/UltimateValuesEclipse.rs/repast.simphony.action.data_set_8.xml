@@ -1,7 +1,7 @@
 <repast.simphony.data2.engine.DataSetDescriptor>
   <name>IndividualAll</name>
   <type>NON_AGGREGATE</type>
-  <sourceType>agents.TestValueNormAgentCompisition</sourceType>
+  <sourceType>agents.TestValueNormAgentComposition</sourceType>
   <inclTick>true</inclTick>
   <inclBatchRun>true</inclBatchRun>
   <inclRandomSeed>false</inclRandomSeed>
@@ -20,7 +20,7 @@
       <string>ID</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>ID</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getID</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -28,7 +28,7 @@
       <string>LastAction</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>LastAction</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getLastAction</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -36,7 +36,7 @@
       <string>LastProfit</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>LastProfit</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getLastProfit</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -44,7 +44,7 @@
       <string>LastResponse</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>LastResponse</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getLastResponse</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -52,7 +52,7 @@
       <string>MyNormDemand</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>MyNormDemand</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getMyNormDemand</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -60,7 +60,7 @@
       <string>MyNormThreshold</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>MyNormThreshold</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getMyNormThreshold</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -68,7 +68,7 @@
       <string>MyValueDemand</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>MyValueDemand</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getMyValueDemand</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -76,7 +76,7 @@
       <string>MyValueThreshold</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>MyValueThreshold</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getMyValueThreshold</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -84,7 +84,7 @@
       <string>ValueDifference</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>ValueDifference</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getValueDifference</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -92,7 +92,7 @@
       <string>Proposer</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>Proposer</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>isProposer</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
@@ -100,7 +100,7 @@
       <string>GameID</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
         <id>GameID</id>
-        <className>agents.TestValueNormAgentCompisition</className>
+        <className>agents.TestValueNormAgentComposition</className>
         <methodName>getGameID</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
