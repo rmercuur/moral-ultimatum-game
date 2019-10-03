@@ -21,7 +21,8 @@ import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.Schedule;
 import repast.simphony.parameter.ParametersParser;
 import repast.simphony.scenario.ScenarioUtils;
-import ultimateValuesEclipse.UltimateValuesBuilder;
+import ultimateValuesEclipse.AbstractBuilder;
+import ultimateValuesEclipse.UltimateNVBuilder;
 
 @RunWith(Parameterized.class)
 public class RespondTest {
@@ -80,7 +81,7 @@ public class RespondTest {
 		 repast.simphony.parameter.Parameters params = pp.getParameters ();
 		 RunEnvironment . init ( new Schedule () , null , params , true );
 		 Context context = new DefaultContext ();
-		 UltimateValuesBuilder builder = new UltimateValuesBuilder();
+		 AbstractBuilder builder = new UltimateNVBuilder();
 		 context = builder . build (context);
 	 }
 	  
@@ -92,7 +93,7 @@ public class RespondTest {
 	
 	@Test
 	public void testMyRespondValueNormAgent() {
-		TestValueNormAgent tester=new TestValueNormAgent(0,valueDifference,true);
+		TestValueNormAgentComposition tester=new TestValueNormAgentComposition(0,valueDifference,true);
 		assertEquals(resultingResponse, tester.myRespond(demand, null));
 	}
 	

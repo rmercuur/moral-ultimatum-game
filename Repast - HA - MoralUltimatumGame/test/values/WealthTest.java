@@ -17,7 +17,7 @@ import repast.simphony.engine.schedule.Schedule;
 import repast.simphony.parameter.Parameters;
 import repast.simphony.parameter.ParametersParser;
 import repast.simphony.scenario.ScenarioUtils;
-import ultimateValuesEclipse.UltimateValuesBuilder;
+import ultimateValuesEclipse.UltimateNVBuilder;
 
 public class WealthTest {
 	 public Context context ;
@@ -34,7 +34,7 @@ public class WealthTest {
 	  Parameters params = pp.getParameters ();
 	  RunEnvironment . init ( new Schedule () , null , params , true );
 	  Context context = new DefaultContext ();
-	  UltimateValuesBuilder builder = new UltimateValuesBuilder();
+	  UltimateNVBuilder builder = new UltimateNVBuilder();
 	  context = builder . build (context);
 	  }
 	 

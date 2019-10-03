@@ -45,17 +45,19 @@ public class ValueBasedAgentDivide extends Agent {
         
     }
     
-//    public ValueBasedAgentDivide(int ID, double valueDifference, boolean isProposer) {
-//		super(ID,isProposer);
-//        this.valueDifference = valueDifference;
-//   
-//        wealth =new Wealth(1+(valueDifference/2));
-//        fairness=new Fairness(1-(valueDifference/2));
-//        values =new ArrayList<Value>();
-//        values.add(wealth);
-//        values.add(fairness);
-//    }
-    
+//For Test Purposes    
+  public ValueBasedAgentDivide(int ID, double valueDifference, boolean isProposer) {
+		super(ID,isProposer);
+       this.valueDifference = valueDifference;
+  
+       wealth =new Wealth(1+(valueDifference/2));
+       fairness=new Fairness(1-(valueDifference/2));
+        values =new ArrayList<Value>();
+       values.add(wealth);
+       values.add(fairness);
+  }   
+
+
 
 	public int calculateMyBestDemand(){
 		TreeMap<Double, Integer> demandToUtility = new TreeMap<Double, Integer>();

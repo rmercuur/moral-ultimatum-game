@@ -13,8 +13,6 @@ import org.junit.Test;
 
 import agents.Agent;
 
-import com.oracle.webservices.internal.api.databinding.Databinding.Builder;
-
 import repast.simphony.context.Context;
 import repast.simphony.context.DefaultContext;
 import repast.simphony.engine.environment.RunEnvironment;
@@ -24,7 +22,7 @@ import repast.simphony.scenario.ScenarioUtils;
 
 public class AbstractBuilderTest {
 	public static Context context ;
-	public static UltimateValuesBuilder builder;
+	public static UltimateNVBuilder builder;
 	
 	@BeforeClass
 	 public static void setUpBeforeClass () throws Exception {
@@ -37,7 +35,7 @@ public class AbstractBuilderTest {
 		 repast.simphony.parameter.Parameters params = pp.getParameters ();
 		 RunEnvironment . init ( new Schedule () , null , params , true );
 		 context = new DefaultContext ();
-		 builder = new UltimateValuesBuilder();
+		 builder = new UltimateNVBuilder();
 		 context = builder . build (context);
 		 params.setValue("GUI", "FALSE");
 	 }

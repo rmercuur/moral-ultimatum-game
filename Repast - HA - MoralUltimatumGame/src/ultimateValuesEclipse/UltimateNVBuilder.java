@@ -64,12 +64,12 @@ public class UltimateNVBuilder extends AbstractBuilder {
 		int valueNormAgentCount = params.getInteger("valueNormAgentCount");
 		int halfValueNormAgentCount = valueNormAgentCount/2;
 			for (int i=0; i < halfValueNormAgentCount; i++){
-				TestValueNormAgentCompisition newAgent=new TestValueNormAgentCompisition(i,true);
+				TestValueNormAgentComposition newAgent=new TestValueNormAgentComposition(i,true);
 				context.add(newAgent);
 				agents.add(newAgent);
 			}
 			for (int i=halfValueNormAgentCount; i < valueNormAgentCount; i++){
-				TestValueNormAgentCompisition newAgent=new TestValueNormAgentCompisition(i,false);
+				TestValueNormAgentComposition newAgent=new TestValueNormAgentComposition(i,false);
 				context.add(newAgent);
 				agents.add(newAgent);
 			}
