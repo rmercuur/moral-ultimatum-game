@@ -124,6 +124,10 @@ public class Helper {
 		}
 		return chosenAction;
 	}
+	
+	public static int getPieSize() {
+		return getParams().getInteger("pieSize");
+	}
 	// End of user code
 
 

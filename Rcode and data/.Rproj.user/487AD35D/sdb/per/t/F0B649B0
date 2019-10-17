@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\ndat <- read.csv(\"./IndividualAll.2019.Oct.14.18_08_35.txt\")\nparams <- read.csv(\"./IndividualAll.2019.Oct.14.18_08_35.batch_param_map.txt\")\n\ndatParams <- merge(dat,params, by = c(\"run\"))\nwrite.csv(datParams,\"mergedData14Oct.csv\")\n",
+    "created" : 1565698796270.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3841863897",
+    "id" : "F0B649B0",
+    "lastKnownWriteTime" : 1571069779,
+    "last_content_update" : 1571069779349,
+    "path" : "E:/GitHub/moral-ultimatum-game/Rcode and data/mergingDataWithParams.R",
+    "project_path" : "mergingDataWithParams.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

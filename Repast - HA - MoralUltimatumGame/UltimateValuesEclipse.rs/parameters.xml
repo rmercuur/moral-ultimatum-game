@@ -6,7 +6,7 @@
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
 									
 		/>
-				<parameter name="dg" displayName="dg (against division by zero)" type="double" 
+				<parameter name="ds" displayName="ds (against division by zero)" type="double" 
 						defaultValue="0.5" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
@@ -48,8 +48,20 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
-				<parameter name="valueNormWeight" displayName="Weight Attributed to Values" type="double" 
+				<parameter name="noiseWeight" displayName="Weight Attributed to Noise" type="double" 
+						defaultValue="0.1" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+		/>
+				<parameter name="valueNormWeightMean" displayName="Weight Attributed to Values (mu)" type="double" 
 						defaultValue="0.5" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+									
+		/>
+				<parameter name="valueNormWeightSD" displayName="Weight Attributed to Values (sd)" type="double" 
+						defaultValue="0.1" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
 									

@@ -64,8 +64,8 @@ public class NormativeAgent5 extends Agent {
 						double sd = 0.1289 * Helper.getParams().getInteger("pieSize");
 						while(demand < 0 || demand > Helper.getParams().getInteger("pieSize")){
 							demand= RandomHelper.createNormal(mean, sd).nextInt();
+						} 
 						break;
-						}
 					case 1: demand =0; break;
 					case 2: demand= RandomHelper.createUniform(0,0.5*Helper.getParams().getInteger("pieSize")).nextInt();break;
 					case 3: demand= RandomHelper.createUniform(0,Helper.getParams().getInteger("pieSize")).nextInt();break;
@@ -74,30 +74,41 @@ public class NormativeAgent5 extends Agent {
 				}
 				break;
 			case "onlyRejects":
-				demand = (int) (seenRespondsRejected.stream().mapToDouble(a -> a).min().getAsDouble() + 
-						0.5*Helper.getParams().getInteger("pieSize"))/
-						2; 
+				demand = (int) 
+						 Math.round(
+								 (seenRespondsRejected.stream().mapToDouble(a -> a).min().getAsDouble() 
+								  + 0.5*Helper.getParams().getInteger("pieSize"))
+								 /2
+							); 
 				break;
 			case "onlyAccepts":
-				demand = (int) (seenRespondsAccepted.stream().mapToDouble(a -> a).max().getAsDouble() + 
+				demand = (int)
+						 Math.round(
+						(seenRespondsAccepted.stream().mapToDouble(a -> a).max().getAsDouble() + 
 						Helper.getParams().getInteger("pieSize"))/
-						2; 
+						2); 
 				break;
 			case "bothAcceptsAndRejects":
 				demand = (int) //do the norm
+					Math.round(
 					(seenRespondsRejected.stream().mapToDouble(a -> a).min().getAsDouble() +
 					seenRespondsAccepted.stream().mapToDouble(a -> a).max().getAsDouble()) /
-					2; 
+					2); 
 				break;
 		}
 		return demand;
 	}
-
+/*
+ * (non-Javadoc)
+ * @see agents.Agent#myRespond(int, agents.Agent)
+ * 
+ * NB: Not used in ValueNormAgentComposition, because that one uses an average threshold (myThreshold())
+ */
 	@Override
 	public boolean myRespond(int demand, Agent proposer) {
 		boolean accept;
 		
-		if(seenDemands.isEmpty()){
+		if(seenDemands.isEmpty()){ //Not used in ValueNormAgent, because this take threshold
 			double acceptRate = 0.0;
 			switch (initialAction) {
 				case 0: //first-round human action
@@ -121,8 +132,13 @@ public class NormativeAgent5 extends Agent {
 
 	public int getMyThreshold(){
 		int threshold =0;
-		if(seenDemands.isEmpty()){ //This is not used, just for completeness in data
-			threshold = (int) 0.5 * Helper.getParams().getInteger("pieSize");
+		if(seenDemands.isEmpty()){
+			threshold = -10; 
+			double mean = 0.5618 * Helper.getParams().getInteger("pieSize");
+			double sd = 0.1289 * Helper.getParams().getInteger("pieSize");
+			while(threshold < 0 || threshold > Helper.getParams().getInteger("pieSize")){
+				threshold= RandomHelper.createNormal(mean, sd).nextInt();
+			} 
 		}
 		else{	
 			OptionalDouble averageSeenDemand = (OptionalDouble) seenDemands.stream().mapToDouble(a -> a).average();

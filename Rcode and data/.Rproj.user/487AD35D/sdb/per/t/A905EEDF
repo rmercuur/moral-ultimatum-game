@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(ggplot2)\nlibrary(reshape2)\nlibrary(dplyr)\n\ndatNoParams <- read.csv(\"./IndividualAll.2019.Oct.14.17_50_53.txt\")\nparams <- read.csv(\"./IndividualAll.2019.Oct.14.17_50_53.batch_param_map.txt\")\nparamsSelected <- select(params,run,randomSeed,valueNormWeight)\ndatParams <- merge(datNoParams,params, by = c(\"run\"))\ndatParamsSelected <- select(datParams,randomSeed,tick,valueNormWeight,demand)\n\ndatNoParams <- read.csv(\"./AverageAcceptLastRoundOneTime.2019.Oct.14.17_50_53.txt\")\nparams <- read.csv(\"./AverageAcceptLastRoundOneTime.2019.Oct.14.17_50_53.batch_param_map.txt\")\nparamsSelected <- select(params,run,randomSeed,valueNormWeight)\ndatParams <- merge(datNoParams,params, by = c(\"run\"))\ndatParamsSelected <- select(datParams,randomSeed,valueNormWeight,AverageAcceptLastRound)\n\ngroup_by(datParamsSelected, valueNormWeight) %>% summarise(mean = mean(AverageAcceptLastRound))\ndatAccept <- aggregate(valueNormWeight ~ AverageAcceptLastRound, data= datParamsSelected, mean)\n\ndatOffersNew$hDemLC <- dataRoundOneSummaryD$demand - dataRoundOneSummaryD$ci\ndatOffersNew$hDemHC <- dataRoundOneSummaryD$demand + dataRoundOneSummaryD$ci\nmyPlotOffer <- ggplot(datOffersNew, aes(normAgentCount, LastRoundAverageDemand)) +\n  geom_point() +\n  geom_line() +\n  geom_ribbon(aes(ymin=hDemLC, ymax=hDemHC),alpha=0.2)+\n  xlab(\"Amount of normative agents\") + ylab(\"Average Demand\")\nplot(myPlotOffer)",
+    "created" : 1570109385520.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3174691351",
+    "id" : "A905EEDF",
+    "lastKnownWriteTime" : 1571069779,
+    "last_content_update" : 1571069779130,
+    "path" : "E:/GitHub/moral-ultimatum-game/Rcode and data/analysisOfData.R",
+    "project_path" : "analysisOfData.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

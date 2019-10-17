@@ -23,14 +23,22 @@ public class TestValueNormAgentComposition extends Agent {
 	boolean valueOrNorms;
 	double valueWeight;
 	double normWeight;
+	double noiseWeight;
 	
 	public TestValueNormAgentComposition(int ID, boolean isProposer) {
 		super(ID,isProposer);
 		myValueBasedAgent=new ValueBasedAgentDivide(1000,isProposer);
 		myNormativeAgent=new NormativeAgent5(1000,isProposer);
-		valueWeight= Helper.getParams().getDouble("valueNormWeight"); //1 - 0.5/Helper.getParams().getInteger("EndTime");
-		normWeight = 1-Helper.getParams().getDouble("valueNormWeight"); //0 + 0.5/Helper.getParams().getInteger("EndTime");
-		//valueOrNorms = false; //true = Value, norm = False;
+		
+		noiseWeight = Helper.getParams().getDouble("noiseWeight");
+		double remainingWeight = 1.0 - noiseWeight;
+		double mean = Helper.getParams().getDouble("valueDifferenceMean");
+		double sd = Helper.getParams().getDouble("valueDifferenceSD");
+		valueWeight = 100; //higher than 1;
+		while(valueWeight < 0 || valueWeight > remainingWeight){
+			valueWeight= RandomHelper.createNormal(mean, sd).nextDouble();
+		} 
+		normWeight = remainingWeight-valueWeight;
 	}
 	
 	//For Unit Test Purposes
@@ -38,26 +46,32 @@ public class TestValueNormAgentComposition extends Agent {
 		super(ID,isProposer);
 		myValueBasedAgent=new ValueBasedAgentDivide(1000,valueDifference, isProposer);//using the Unit Test Contructor
 		myNormativeAgent=new NormativeAgent5(1000,isProposer);
-		valueWeight= Helper.getParams().getDouble("valueNormWeight"); //1 - 0.5/Helper.getParams().getInteger("EndTime");
-		normWeight = 1-Helper.getParams().getDouble("valueNormWeight"); //0 + 0.5/Helper.getParams().getInteger("EndTime");
-		//valueOrNorms = false; //true = Value, norm = False;
+		double mean = Helper.getParams().getDouble("valueDifferenceMean");
+		double sd = Helper.getParams().getDouble("valueDifferenceSD");
+		double valueWeight = 100; //higher than 1;
+		while(valueWeight < 0 || valueWeight > 1){
+			valueWeight= RandomHelper.createNormal(mean, sd).nextDouble();
+		} 
+		normWeight = 1-valueWeight;
 	}
 	
 	@Override
 	public int myPropose(Agent responder) {
 		int valueDemand= myValueBasedAgent.myPropose(responder);
 		int normDemand =myNormativeAgent.myPropose(responder);
-		double demand = valueWeight * valueDemand + normWeight * normDemand;
-		return (int) demand;
+		int noiseDemand = RandomHelper.createUniform(0, Helper.getPieSize()).nextInt();
+		
+		double demand = valueWeight * valueDemand + normWeight * normDemand + noiseWeight * noiseDemand;
+		return (int) Math.round(demand);
 	}
 	
 	@Override
 	public boolean myRespond(int demand, Agent proposer) {
 		int valueThreshold =myValueBasedAgent.getMyThreshold();
 		int normThreshold =myNormativeAgent.getMyThreshold();
+		int noiseThreshold =  RandomHelper.createUniform(0, Helper.getPieSize()).nextInt();
 		
-		
-		double threshold= valueWeight * valueThreshold + normWeight +normThreshold ;
+		double threshold= valueWeight * valueThreshold + normWeight +normThreshold + noiseWeight *noiseThreshold;
 		return demand <= threshold;
 	}
 	
@@ -95,5 +109,9 @@ public class TestValueNormAgentComposition extends Agent {
 	@Override
 	public double getValueDifference() {
 		return myValueBasedAgent.getValueDifference();
+	}
+	
+	public double getMyValueWeight() {
+		return valueWeight;
 	}
 }
